@@ -8,18 +8,17 @@ public class MyThr extends Thread {
 	static int nxt = -1;
 	Graph g;
 	MyThr(Graph g) {
-		if (flag == null) {
-			flag = new boolean[g.wordsid][g.wordsid];
-		}
 		this.g = g;
 	}
 	int mGo() {
-		if (nxt == -2) {
+		if (nxt == -2) { // have ended
 			return -2;
 		}
 		if (nxt == -1) {
+			flag = new boolean[g.wordsid][g.wordsid];
 			nxt = (int)(Math.random() * g.wordsid);
-			System.out.println(g.wordlist.elementAt(nxt));
+			ShowRWay.words += g.wordlist.elementAt(nxt) + "\n";
+			//System.out.println(g.wordlist.elementAt(nxt));
 		}
 		int num = g.vec.elementAt(nxt).size();
 		if (num == 0) {
@@ -32,9 +31,10 @@ public class MyThr extends Thread {
 		    //System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
 		} 
 		int n_nxt = tp.elementAt((int)(Math.random() * num));
-		System.out.println(g.wordlist.elementAt(n_nxt));
+		//System.out.println(g.wordlist.elementAt(n_nxt));
+		ShowRWay.words += g.wordlist.elementAt(n_nxt) + "\n";
 		if (flag[nxt][n_nxt] == true) {
-			return -1;
+			return -3;
 		}
 		flag[nxt][n_nxt] = true;
 		nxt = n_nxt;
@@ -46,9 +46,19 @@ public class MyThr extends Thread {
 				sleep(1000);
 			} catch (InterruptedException e) {  
             } 
-			if (mGo() == -1) {
+			int ret = mGo();
+			if (ret == -1) {
+				ShowRWay.echo.setText("no next word!");
 				nxt = -2;
 			}
+			if (ret == -3) {
+				ShowRWay.echo.setText("repeat edge!");
+				nxt = -2;
+			}
+			if (ret == 0) {
+				ShowRWay.echo.setText("travelling...");
+			}
+			ShowRWay.txtA.setText(ShowRWay.words);
 		}
 	}
 }

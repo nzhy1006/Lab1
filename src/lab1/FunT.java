@@ -8,12 +8,29 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.Queue;
 import java.util.LinkedList;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;  
+import java.awt.event.ActionEvent;  
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.*;
+import java.awt.Graphics2D;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;  
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 
 public class FunT {
@@ -23,17 +40,38 @@ public class FunT {
 		//Graph a = new Graph();
 		//a.readFile("/home/hhk/Desktop/1.txt");
 		JFrame frame = new JFrame("展示有向图");
-        MyG ll=new MyG(gra);
-        frame.add(ll);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200,700);
+		JButton butt = new JButton("save as a jpg");
+		frame.getContentPane().add(BorderLayout.SOUTH, butt);
+        MyG ll=new MyG(gra); //extends JLabel
+        frame.add(BorderLayout.CENTER, ll);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(1200,800);
         frame.setVisible(true);
+        
+        
+        butt.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                Container con = frame.getContentPane();
+                BufferedImage img = new BufferedImage(
+                	1200,650,BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2d = img.createGraphics();
+                con.printAll(g2d);
+                File f = new File("/home/hhk/Desktop/aaa.jpg");
+                try {
+                	ImageIO.write(img,"jpg",f);
+                	butt.setText("保存成功！");
+                } catch (IOException ex) {
+                }
+                g2d.dispose();
+            }  
+        });  
+        
 	}
 	static int bridge(Graph g, String s1, String s2) {
 		//s1 = s1.toLowerCase();
 		//s2 = s2.toLowerCase();
 		if(g.words.containsKey(s1) == false || g.words.containsKey(s2) == false) {
-			strS = "No word1 or word2 in the graph";
+			strS = "No word 1 or word 2 in the graph";
 			return -1;
 		}
 		
@@ -50,9 +88,9 @@ public class FunT {
 			strS = "no bridge";
 			return -1;
 		} else {
-			strS = "bridge: ";
+			strS = "bridge:";
 			for (int i = 0; i < str.size(); i++) {
-				strS += ", " + str.elementAt(i);
+				strS += " " + str.elementAt(i);
 			}
 			return 0;
 		}
@@ -70,7 +108,7 @@ public class FunT {
 		return ans;
 	}
 	
-    static int shortestpath(Graph g, String start, String end) {
+    static String shortestpath(Graph g, String start, String end) {
     	str = new Vector<String>();
     	int[] d = new int[g.wordsid];
     	int[] nxt = new int[g.wordsid];
@@ -81,6 +119,9 @@ public class FunT {
     		path[i] = -1;
     	}
     	Queue<Integer> q = new LinkedList<Integer>();
+    	if (g.words.containsKey(start) == false || g.words.containsKey(end) == false) {
+    		return "no start words or end words in the graph";
+    	}
     	int sid = g.words.get(start);
     	int eid = g.words.get(end);
     	q.offer(sid);
@@ -106,7 +147,7 @@ public class FunT {
     		} 
     	}
     	if (d[eid] == -1) {
-    		return -1;
+    		return "no way to " + end;
     	}
     	int e = eid;
     	while (nxt[e] != -1) {
@@ -117,70 +158,14 @@ public class FunT {
     	JFrame frame = new JFrame("展示最短路");
         MyG ll=new MyG(g, path);
         frame.add(ll);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1200,700);
         frame.setVisible(true);
-    	return d[eid];
+    	return "" + d[eid];
 	}
-    static String random(Graph g) {
-		/*String ans = "";
-		
-		Random ran = new Random();
-		
-		int sta = ran.nextInt(g.wordsid);
-		boolean temp = false;
-		HashMap<Integer, Integer> tpm = g.vec.elementAt(sta);
-	
-		
-		ans = ans + g.wordlist.get(sta);
-		
-		while(g.vec.elementAt(sta).isEmpty() != true && temp != true) {
-			int index = ran.nextInt(g.vec.elementAt(sta).size());
-			int count = 0;
-			tpm = g.vec.elementAt(sta);
-			
-			for (HashMap.Entry<Integer, Integer> entry : tpm.entrySet()) { 
-				if(count == index) {
-					ans = ans + g.wordlist.get(entry.getKey());
-					if(g.mark.elementAt(sta).get(entry.getKey()) == true) { //contain this edge
-						return ans;
-					} else {
-						g.mark.elementAt(sta).put(entry.getKey(), true);
-						sta = entry.getKey();
-					}
-					break;
-				}
-				count += 1;
-			} 
-		}
-		th1 t1 = new th1();
-	    Thread tt1 = new Thread(t1);
-	    tt1.start();
-	    th2 t2 = new th2();
-	    Thread tt2 = new Thread(t2);
-	    tt2.start();
-	    while(th1.Run != false) {
-	    	System.out.println(th1.Run + ans);
-	    }
-	    System.out.println("1213413");*/
-		
-		Thr t = new Thr(g);
-		//th2 tt = new th2();
-		//Thread t2 = new Thread(tt);
-		t.go.start();
-		t.stop.start();
-		//t2.start();
-	
-		try {  
-	        t.stop.join();  
-	        t.go.join();  
-	    } catch (InterruptedException e) {  
-	        e.printStackTrace(); 
-	    } 
-		System.out.println("ssssssssssssssssss");
-		return t.ans;
-    }
     static void ranGo(Graph gra) {
+    	MyThr.nxt = -1;
+    	ShowRWay.words = "";
     	new ShowRWay(gra).show();
     }
 }

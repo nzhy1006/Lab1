@@ -12,13 +12,10 @@ public class Graph {
 	Vector<HashMap<Integer, Integer>> vec = new Vector<HashMap<Integer, Integer>>();  //heads 
 	HashMap<String, Integer> words = new HashMap<String, Integer>();  // trans words to int 
 	Vector<String> wordlist = new Vector<String>(); 
-	
-	//Vector<HashMap<Integer, Boolean>> mark = new Vector<HashMap<Integer, Boolean>>(); //func6 mark edge
 	boolean[] mark;
-	
 	String line(String str) { 
 		str = str.toLowerCase(); 
-		String ss = ""; 
+		String ss = "";
 		boolean flag = false; 
 		for(int i = 0; i < str.length(); i++) { 
 			if((str.charAt(i) >= 'a' && str.charAt(i) <= 'z') || (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z')) { 
@@ -33,30 +30,24 @@ public class Graph {
 		} 
 		return ss;
 	} 
-	
 	void readFile(String filePath) {
 		wordsid = 0; 
 		vec = new Vector<HashMap<Integer, Integer>>();  //heads 
 		words = new HashMap<String, Integer>();  // trans words to int 
 		wordlist = new Vector<String>(); 
-		
 		Vector<HashMap<Integer, Boolean>> mark = new Vector<HashMap<Integer, Boolean>>();
 		try { 
             String encoding="GBK"; 
             File file=new File(filePath); 
             if(file.isFile() && file.exists()){ //判断文件是否存在 
-            	
                 InputStreamReader read = new InputStreamReader( 
                 new FileInputStream(file),encoding);//考虑到编码格式 
                 BufferedReader bufferedReader = new BufferedReader(read); 
-                
                 String lineTxt = null; 
                 String end = null;
-                
                 while((lineTxt = bufferedReader.readLine()) != null){ 
                 	String str = line(lineTxt); 
                 	if(str != ""){
-
                 		String[] spl = str.split(" ");
                 		if(end != null) {
                 			addE(end, spl[0]);
@@ -76,7 +67,6 @@ public class Graph {
             e.printStackTrace(); 
         } 
 	}
-	
 	void addN(String x) {
 		if (words.containsKey(x) == false) {
 			words.put(x, wordsid);
@@ -104,13 +94,6 @@ public class Graph {
 		}
 		int xid = words.get(x);
 		HashMap<Integer, Integer> tpm = vec.elementAt(xid);	
-		/*
-		System.out.println("ShE  " + x);
-		for (HashMap.Entry<Integer, Integer> entry : tpm.entrySet()) {
-		    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); 
-		} 
-		System.out.println("over");
-		*/
 		return tpm;
 	}
 } 
