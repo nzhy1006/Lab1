@@ -34,7 +34,7 @@ public class Graph {
 		wordsid = 0; 
 		vec = new Vector<HashMap<Integer, Integer>>();  //heads 
 		words = new HashMap<String, Integer>();  // trans words to int 
-		wordlist = new Vector<String>(); 
+		wordlist = new Vector<String>();
 		Vector<HashMap<Integer, Boolean>> mark = new Vector<HashMap<Integer, Boolean>>();
 		try { 
             String encoding="GBK"; 

@@ -9,9 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 public class MainF extends JFrame {
-	static Graph g;
 	static String s;
 	static String echo = "no text";
 	public void go() {
@@ -61,6 +62,13 @@ public class MainF extends JFrame {
         //set buttons
         readFile.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {
+            	JFileChooser ch = new JFileChooser();
+            	ch.setCurrentDirectory(new File("."));
+            	int result = ch.showOpenDialog(jp);
+            	String filename = ch.getSelectedFile().getPath();
+            	Lab1.gra = Lab1.createDirectedGraph(filename);
+            	echol.setText(filename);
+            	/*
             	g = new Graph();
             	JButton button = new JButton("submit");
                 JTextField field = new JTextField("/home/hhk/Desktop/1.txt");
@@ -77,25 +85,26 @@ public class MainF extends JFrame {
                 button.addActionListener(new ActionListener() {  
                     public void actionPerformed(ActionEvent e) {
                     	s = field.getText();
-                    	echol.setText(s);
+                    	
                         g.readFile(s);
                         label.setText("Finish reading!");
                     }  
                 }); 
+                */
             }  
         });  
         showGraph.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            	if (g == null) {
+            	if (Lab1.gra == null) {
             		echol.setText("read a file first!");
             		return;
             	}
-            	FunT.showGra(g);
+            	Lab1.showDirectedGraph(Lab1.gra);
             }  
         }); 
         bridgeWords.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            	if (g == null) {
+            	if (Lab1.gra == null) {
             		echol.setText("read a file first!");
             		return;
             	}
@@ -124,15 +133,14 @@ public class MainF extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                     	String s1 = field1.getText();
                         String s2 = field2.getText();
-                        int ans = FunT.bridge(g, s1, s2);
-                        label.setText(FunT.strS);
+                        label.setText(Lab1.queryBridgeWords(Lab1.gra, s1, s2));
                     }  
                 }); 
             }  
         });
         newText.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if (g == null) {
+            	if (Lab1.gra == null) {
             		echol.setText("read a file first!");
             		return;
             	}
@@ -155,14 +163,14 @@ public class MainF extends JFrame {
                 button.addActionListener(new ActionListener() {  
                     public void actionPerformed(ActionEvent e) {
                     	String s1 = field1.getText();
-                        label.setText(FunT.newtext(g, s1));
+                        label.setText(Lab1.generateNewText(Lab1.gra, s1));
                     }  
                 }); 
             }  
         });  
         shortestPath.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {
-            	if (g == null) {
+            	if (Lab1.gra == null) {
             		echol.setText("read a file first!");
             		return;
             	}
@@ -191,18 +199,18 @@ public class MainF extends JFrame {
                     public void actionPerformed(ActionEvent e) {
                     	String s1 = field1.getText();
                     	String s2 = field2.getText();
-                        label.setText(""+FunT.shortestpath(g, s1, s2));
+                        label.setText(Lab1.calcShortestPath(Lab1.gra, s1, s2));
                     }  
                 }); 
             }  
         });  
         randomGo.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-            	if (g == null) {
+            	if (Lab1.gra == null) {
             		echol.setText("read a file first!");
             		return;
             	}
-            	FunT.ranGo(g);
+            	Lab1.randomWalk(Lab1.gra);
             } 
         });  
 	}
