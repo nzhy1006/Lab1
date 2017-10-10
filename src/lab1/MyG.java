@@ -28,3 +28,4 @@ public class MyG extends JLabel {
 		}
 	}
 }
+//tt
