@@ -93,4 +93,4 @@ class WordImg {
 		} 
 	}
 }
-//b1
+//c4
