@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -38,3 +38,4 @@ class NewF implements ActionListener {
     public static final String myOut[]= {"zero", "one", "two", "three",
         "four", "five", "six", "seven", "eight", "nine"};
 }
+//c4
