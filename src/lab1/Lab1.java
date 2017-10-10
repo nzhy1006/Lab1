@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -149,3 +149,4 @@ public class Lab1 {
     	return ShowRWay.words;
     }
 }
+//b2

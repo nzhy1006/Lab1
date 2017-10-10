@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -215,3 +215,5 @@ public class MainF extends JFrame {
         });  
 	}
 }
+
+//b2
