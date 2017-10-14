@@ -62,5 +62,3 @@ public class MyThr extends Thread {
 		}
 	}
 }
-
-//b1
