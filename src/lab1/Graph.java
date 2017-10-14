@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -97,3 +97,5 @@ public class Graph {
 		return tpm;
 	}
 } 
+
+//cc
