@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import javax.swing.JLabel;//b1
 
-public class MyG extends JLabel {
+public class MyG extends JLabel {//c4
 	Vector<WordImg> words = new Vector<WordImg>();
 	
 	MyG (Graph gra) {
