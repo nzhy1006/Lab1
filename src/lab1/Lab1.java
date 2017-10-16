@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Vector;
+import java.util.Vector;//b1
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;

@@ -3,7 +3,7 @@ package lab1;
 import java.awt.Graphics;
 import java.util.Vector;
 
-import javax.swing.JLabel;
+import javax.swing.JLabel;//b1
 
 public class MyG extends JLabel {
 	Vector<WordImg> words = new Vector<WordImg>();

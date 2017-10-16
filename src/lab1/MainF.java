@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
-import java.io.File;
+import java.io.File;//b1
 
 public class MainF extends JFrame {
 	static String s;
