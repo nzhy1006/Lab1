@@ -1,4 +1,4 @@
-package lab1;
+﻿package lab1;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.HashMap;//b2
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Vector;
