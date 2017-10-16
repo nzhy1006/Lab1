@@ -10,8 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;//c4
 import javax.swing.JFileChooser;
+<<<<<<< HEAD
 import java.io.File;//b1
 
+=======
+import java.io.File;
+//b2
+>>>>>>> B2
 public class MainF extends JFrame {
 	static String s;
 	static String echo = "no text";

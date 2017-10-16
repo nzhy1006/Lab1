@@ -4,8 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;//c4
 import java.io.InputStreamReader;
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Vector;//b1
+=======
+import java.util.HashMap;//b2
+import java.util.Vector;
+>>>>>>> B2
 
 public class Graph {
 	int wordsid = 0; 
