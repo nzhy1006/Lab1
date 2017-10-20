@@ -109,16 +109,16 @@ public class Lab1 {
     }
     static String generateNewText(final Graph gg, final String inputText) {
         String[] div = inputText.split(" ");
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         for (int i = 0; i < div.length - 1; i++) {
-            ans = ans + " " + div[i];
+            ans.append(ans + " " + div[i]);
             if (queryBridgeWords(gg, div[i].toLowerCase(),
                     div[i + 1].toLowerCase()).charAt(6) == ':') {
-                ans = ans + " " + str.elementAt((int) (Math.random() * 100) % str.size());
+                ans.append(" " + str.elementAt((int) (Math.random() * 100) % str.size()));
             }
         }
-        ans = ans + " " + div[div.length - 1];
-        return ans;
+        ans.append(" " + div[div.length - 1]);
+        return ans.toString();
     }
 
     static String calcShortestPath(final Graph gg,

@@ -68,7 +68,7 @@ class WordImg {
         return nxt;
     }
 
-    public static void setNxt(int[] nxt) {
+    public static void setNxt(final int[] nxt) {
         WordImg.nxt = nxt;
     }
 

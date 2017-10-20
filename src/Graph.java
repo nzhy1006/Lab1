@@ -47,7 +47,7 @@ public class Graph {
     }
 
     public boolean[] getMark() {
-        if(mark == null){
+        if (mark == null) {
             return null;
         }
         else {
@@ -114,6 +114,7 @@ public class Graph {
                     }
                     lineTxt = bufferedReader.readLine();
                 }
+                bufferedReader.close();
                 read.close();
             } else {
                 System.out.println("找不到指定的文件");
