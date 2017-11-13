@@ -12,8 +12,8 @@ public class FunTTest {
 		String filepath = "D:/1.txt";
 		g.readFile(filepath);
 		FunT tt = new FunT();
-		String word1 = "haha";
-		String word2 = "three";
+		String word1 = "wawaw";
+		String word2 = "threeaaa";
 		tt.bridge(g, word1, word2);
 		String ans = tt.strS;
 		String except = "No word 1 or word 2 in the graph";
